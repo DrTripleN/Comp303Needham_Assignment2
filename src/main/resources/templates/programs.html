@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Select Your Program</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="bg-dark text-light">
+<div class="container mt-5">
+  <h2>Select Your Program</h2>
+  <form th:action="@{/students/programs}" method="post" class="bg-secondary p-4 rounded">
+    <input type="hidden" name="studentId" th:value="${student.studentId}" />
+    <div class="form-group">
+      <label for="programSelect">Choose a program:</label>
+      <select class="form-control" id="programSelect" name="programCode" required>
+        <option value="" disabled selected>Select a program</option>
+        <option th:each="program : ${programs}" th:value="${program.programCode}" th:text="${program.programName + ' - $' + program.fee}"></option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Enroll</button>
+  </form>
+</div>
+</body>
+</html>
